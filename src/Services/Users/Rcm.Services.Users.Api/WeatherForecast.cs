@@ -1,4 +1,4 @@
-namespace RebZ.ApiGateway
+namespace Rcm.Services.Users.Api
 {
     public class WeatherForecast
     {

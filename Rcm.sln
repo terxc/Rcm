@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{82FD96
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{8A8D3D7B-DB7A-4B59-90CF-BE9258F8ACAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebZ.ApiGateway", "src\ApiGateway\RebZ.ApiGateway\RebZ.ApiGateway.csproj", "{D08BBC1F-4B21-4A75-8698-CC9D8DDAD94F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.ApiGateway", "src\ApiGateway\Rcm.ApiGateway\Rcm.ApiGateway.csproj", "{D08BBC1F-4B21-4A75-8698-CC9D8DDAD94F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebZ.Services.Users.Api", "src\Services\Users\RebZ.Services.Users.Api\RebZ.Services.Users.Api.csproj", "{2C31360D-6DC1-49DC-BE85-0B5234675D41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.Services.Users.Api", "src\Services\Users\Rcm.Services.Users.Api\Rcm.Services.Users.Api.csproj", "{2C31360D-6DC1-49DC-BE85-0B5234675D41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebZ.Shared", "src\Shared\RebZ.Shared\RebZ.Shared.csproj", "{592A6282-23B1-44E5-9D99-1C7FB8566E27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.Shared", "src\Shared\Rcm.Shared\Rcm.Shared.csproj", "{592A6282-23B1-44E5-9D99-1C7FB8566E27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
