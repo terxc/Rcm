@@ -1,54 +1,50 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Rcm.Services.Users.Core;
 
-namespace Rcm.Services.Users.Api
+
+namespace Rcm.Services.Users.Api;
+
+public class Startup
 {
-    public class Startup
+    private readonly IConfiguration _configuration;
+    private readonly string _appName;
+
+    public Startup(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
-        private readonly string _appName;
+        _configuration = configuration;
+        _appName = configuration["app:name"];
+    }
 
-        public Startup(IConfiguration configuration)
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+
+        services.AddControllers();
+        services.AddCore();
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
         {
-            _configuration = configuration;
-            _appName = configuration["app:name"];
+            app.UseDeveloperExceptionPage();
         }
 
+        app.UseRouting();
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
         {
-
-            services.AddControllers();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", context => context.Response.WriteAsync(_appName));
-                endpoints.MapControllers();
-            });
-        }
+            endpoints.MapGet("/", context => context.Response.WriteAsync(_appName));
+            endpoints.MapControllers();
+        });
     }
 }

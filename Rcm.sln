@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Shared", "src\Shared\Rcm.Shared\Rcm.Shared.csproj", "{592A6282-23B1-44E5-9D99-1C7FB8566E27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.ApiGateway", "src\ApiGateway\Rcm.ApiGateway\Rcm.ApiGateway.csproj", "{5D617C5B-BBAC-4605-894C-014DB1966B4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.ApiGateway", "src\ApiGateway\Rcm.ApiGateway\Rcm.ApiGateway.csproj", "{5D617C5B-BBAC-4605-894C-014DB1966B4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.Services.Users.Api", "src\Services\Users\Rcm.Services.Users.Api\Rcm.Services.Users.Api.csproj", "{0DB9D26D-2CDF-4C36-99C7-63D008564BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Services.Users.Api", "src\Services\Users\Rcm.Services.Users.Api\Rcm.Services.Users.Api.csproj", "{0DB9D26D-2CDF-4C36-99C7-63D008564BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.Services.Users.Core", "src\Services\Users\Rcm.Services.Users.Core\Rcm.Services.Users.Core.csproj", "{22985A41-5BAB-45B6-A858-3BCA2C100BA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Services.Users.Core", "src\Services\Users\Rcm.Services.Users.Core\Rcm.Services.Users.Core.csproj", "{22985A41-5BAB-45B6-A858-3BCA2C100BA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
