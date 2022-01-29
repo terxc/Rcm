@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  api-gateway:
+    build:
+      context: ../
+      dockerfile: src/ApiGateway/Dockerfile
+    container_name: api-gateway
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    networks:
+      - rcm
+
+  users-service:
+    build:
+      context: ../
+      dockerfile: src/Services/Users/Dockerfile
+    container_name: users-service
+    restart: unless-stopped
+    ports:
+      - 8010:80
+    networks:
+      - rcm
+
+networks:
+  rcm:
+    name: rcm-network
+    external: true
