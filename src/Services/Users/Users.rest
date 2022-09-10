@@ -1,0 +1,17 @@
+@url = http://localhost:5000/users-service
+
+###
+GET {{url}}
+###
+@email = asd@f
+@adminEmail = admin1@inflow.io
+@password = Secret123!
+
+### Register as the regular user
+POST {{url}}/api/account/sign-up
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
