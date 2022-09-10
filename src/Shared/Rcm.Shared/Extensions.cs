@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Rcm.Shared.Common;
+namespace Rcm.Shared;
 
 public static class Extensions
 {
