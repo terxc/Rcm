@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Rcm.Services.Users.Core.Features.Accounts.Commands.SignUp;
+namespace Rcm.Services.Users.Core.Commands.SignUp;
 
 public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
 {
