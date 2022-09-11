@@ -3,7 +3,7 @@ using Rcm.Services.Users.Core.Entities;
 
 namespace Rcm.Services.Users.Core.DAL;
 
-internal class UsersDbContext : DbContext
+public class UsersDbContext : DbContext
 {
     public UsersDbContext(DbContextOptions<UsersDbContext> options) : base(options)
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rcm.Services.Users.Core.Entities;
 
-internal class UserRole
+public class UserRole
 {
     public int UserId { get; set; }
     public int RoleId { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Rcm.Services.Users.Core.Entities;
 
-internal class User
+public class User
 {
     public int Id { get; set; }
     public string Email { get; set; }

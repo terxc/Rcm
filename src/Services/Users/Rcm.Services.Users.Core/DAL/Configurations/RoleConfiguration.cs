@@ -8,7 +8,7 @@ using Rcm.Services.Users.Core.Entities;
 
 namespace Rcm.Services.Users.Core.DAL.Configurations;
 
-internal class RoleConfiguration : IEntityTypeConfiguration<Role>
+public class RoleConfiguration : IEntityTypeConfiguration<Role>
 {
     public void Configure(EntityTypeBuilder<Role> builder)
     {

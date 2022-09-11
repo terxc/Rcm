@@ -2,7 +2,7 @@
 
 namespace Rcm.Services.Users.Core.Entities;
 
-internal class Role
+public class Role
 {
     public int Id { get; set; }
     public string Name { get; set; }

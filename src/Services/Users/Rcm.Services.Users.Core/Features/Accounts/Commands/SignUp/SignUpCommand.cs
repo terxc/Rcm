@@ -11,7 +11,7 @@ public class SignUpCommand : IRequest<int>
     public string Password { get; set; }
 }
 
-internal class SignUpCommandHandler : IRequestHandler<SignUpCommand, int>
+public class SignUpCommandHandler : IRequestHandler<SignUpCommand, int>
 {
     private readonly UsersDbContext _context;
 
