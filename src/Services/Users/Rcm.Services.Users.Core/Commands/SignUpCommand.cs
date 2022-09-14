@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Rcm.Services.Users.Core.DAL;
 
-namespace Rcm.Services.Users.Core.Commands.SignUp;
+namespace Rcm.Services.Users.Core.Commands;
 
 public class SignUpCommand : IRequest<int>
 {

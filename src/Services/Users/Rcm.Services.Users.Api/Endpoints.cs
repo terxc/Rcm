@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Rcm.Services.Users.Core.Commands.SignUp;
-using Rcm.Services.Users.Core.Queries.GetUser;
+using Rcm.Services.Users.Core.Commands;
+using Rcm.Services.Users.Core.Queries;
 using Rcm.Shared.MediatR;
 
 namespace Rcm.Services.Users.Api;
@@ -14,10 +14,9 @@ public static class Endpoints
         var appName = app.Configuration["app:name"];
         app.MapGet("/", () => appName);
 
-        //app.MapGet("api/users/{userId}", async (ISender mediator, [AsParameters] GetUserQuery query) => await mediator.Send(query));
-        //app.MapPost("api/account/sign-up", async (ISender mediator, SignUpCommand command) => await mediator.Send(command));
+        app.MediatePost<SignInCommand>("api/account/sign-in");
+        app.MediatePost<SignUpCommand>("api/account/sign-up");
 
         app.MediateGet<GetUserQuery>("api/users/{userId}");
-        app.MediatePost<SignUpCommand>("api/account/sign-up");
     }
 }

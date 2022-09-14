@@ -22,4 +22,6 @@ public static class Extensions
             return provider.GetRequiredService<IConfiguration>().GetOptions<TModel>(sectionName);
         }
     }
+
+    public static long ToTimestamp(this DateTime dateTime) => new DateTimeOffset(dateTime).ToUnixTimeSeconds();
 }

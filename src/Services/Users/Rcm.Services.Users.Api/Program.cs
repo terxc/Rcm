@@ -11,7 +11,7 @@ internal class Program
         builder.Services.AddCore();
 
         var app = builder.Build();
-        app.UseMiddleware<ErrorHandlerMiddleware>();
+        app.UseCore();
 
         app.MapEndpoints();
 

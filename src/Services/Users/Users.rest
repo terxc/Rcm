@@ -16,6 +16,16 @@ Content-Type: application/json
   "password": "{{password}}"
 }
 
+### Login as the regular user
+# @name sign_in
+POST {{url}}/api/account/sign-in
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
 
 ### Get user details as admin
 GET {{url}}/api/users/{{userId}}

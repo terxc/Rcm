@@ -1,16 +1,9 @@
-﻿using System;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Threading;
 using MediatR;
 using Rcm.Services.Users.Core.DAL;
 
-namespace Rcm.Services.Users.Core.Queries.GetUser;
-
-public class GetUserQuery : IRequest<int>
-{
-    public int UserId { get; set; }
-}
-
+namespace Rcm.Services.Users.Core.Queries.Handlers;
 public class GetUserQueryHandler : IRequestHandler<GetUserQuery, int>
 {
     private readonly UsersDbContext _context;

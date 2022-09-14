@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Rcm.Shared.Exceptions;
+using Rcm.Shared.Serialization;
 
 namespace Rcm.Shared.Middlewares;
 public class ErrorHandlerMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<ErrorHandlerMiddleware> _logger;
+    private readonly IJsonSerializer _serializer;
 
     public ErrorHandlerMiddleware(RequestDelegate next,
-        ILogger<ErrorHandlerMiddleware> logger)
+        ILogger<ErrorHandlerMiddleware> logger,
+        IJsonSerializer serializer)
     {
         _next = next;
         _logger = logger;
+        _serializer = serializer;
     }
 
     public async Task Invoke(HttpContext context)
@@ -51,7 +55,7 @@ public class ErrorHandlerMiddleware
                 break;
         }
 
-        var result = JsonConvert.SerializeObject(new { message = exception.Message, errors = errors });
+        var result = _serializer.Serialize(new { Message = exception.Message, Errors = errors });
         await response.WriteAsync(result);
     }
 }
