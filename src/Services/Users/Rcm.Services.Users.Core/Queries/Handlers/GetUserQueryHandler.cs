@@ -6,11 +6,11 @@ using Rcm.Services.Users.Core.DAL;
 namespace Rcm.Services.Users.Core.Queries.Handlers;
 public class GetUserQueryHandler : IRequestHandler<GetUserQuery, int>
 {
-    private readonly UsersDbContext _context;
+    private readonly UsersDbContext _dbContext;
 
-    public GetUserQueryHandler(UsersDbContext context)
+    public GetUserQueryHandler(UsersDbContext dbContext)
     {
-        _context = context;
+        _dbContext = dbContext;
     }
 
     public async Task<int> Handle(GetUserQuery request, CancellationToken cancellationToken)

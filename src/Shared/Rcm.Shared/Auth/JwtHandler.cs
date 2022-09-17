@@ -40,7 +40,7 @@ public class JwtHandler : IJwtHandler
         };
     }
 
-    public JsonWebToken CreateToken(string userId, string role = null, IDictionary<string, string> claims = null)
+    public JsonWebToken CreateToken(string userId, IEnumerable<string> roles = null, IDictionary<string, IEnumerable<string>> claims = null)
     {
         if (string.IsNullOrWhiteSpace(userId))
         {
@@ -55,13 +55,20 @@ public class JwtHandler : IJwtHandler
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString()),
             };
-        if (!string.IsNullOrWhiteSpace(role))
-        {
-            jwtClaims.Add(new Claim(ClaimTypes.Role, role));
-        }
 
-        var customClaims = claims?.Select(claim => new Claim(claim.Key, claim.Value)).ToArray() ?? Array.Empty<Claim>();
-        jwtClaims.AddRange(customClaims);
+        var rolesClaims = roles?.Select(role => new Claim(ClaimTypes.Role, role)).ToArray() ?? Array.Empty<Claim>();
+        jwtClaims.AddRange(rolesClaims);
+
+        if (claims != null)
+        {
+            var customClaims = new List<Claim>();
+            foreach (var (claim, values) in claims)
+            {
+                customClaims.AddRange(values.Select(value => new Claim(claim, value)));
+            }
+
+            jwtClaims.AddRange(customClaims);
+        }
 
         var expires = now.AddMinutes(_options.ExpiryMinutes);
         var jwt = new JwtSecurityToken(
@@ -79,8 +86,8 @@ public class JwtHandler : IJwtHandler
             RefreshToken = string.Empty,
             Expires = expires.ToTimestamp(),
             Id = userId,
-            Role = role ?? string.Empty,
-            Claims = customClaims.ToDictionary(c => c.Type, c => c.Value)
+            Roles = roles ?? Array.Empty<string>(),
+            Claims = claims ?? new Dictionary<string, IEnumerable<string>>()
         };
     }
 
@@ -95,9 +102,11 @@ public class JwtHandler : IJwtHandler
         return new JsonWebTokenPayload
         {
             Subject = jwt.Subject,
-            Role = jwt.Claims.SingleOrDefault(x => x.Type == ClaimTypes.Role)?.Value,
+            Roles = jwt.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value),
             Expires = jwt.ValidTo.ToTimestamp(),
-            Claims = jwt.Claims.Where(x => !DefaultClaims.Contains(x.Type)).ToDictionary(k => k.Type, v => v.Value)
+            Claims = jwt.Claims.Where(x => !DefaultClaims.Contains(x.Type))
+                .GroupBy(c => c.Type)
+                .ToDictionary(k => k.Key, v => v.Select(c => c.Value))
         };
     }
 }

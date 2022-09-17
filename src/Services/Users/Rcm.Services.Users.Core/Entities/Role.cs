@@ -6,8 +6,8 @@ public class Role
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public IEnumerable<string> Permissions { get; set; }
-    public IEnumerable<UserRole> Users { get; set; }
+    public IEnumerable<Permission> Permissions { get; set; }
+    public IEnumerable<User> Users { get; set; }
 
     public static string Default => User;
     public const string User = "user";

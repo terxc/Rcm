@@ -39,7 +39,7 @@ public class ErrorHandlerMiddleware
     private async Task HandleErrorAsync(HttpContext context, Exception exception)
     {
         var response = context.Response;
-        response.ContentType = "application/json";
+        response.ContentType = "application/json; charset=utf-8";
 
         var errors = new List<string>();
 
@@ -48,6 +48,9 @@ public class ErrorHandlerMiddleware
             case ValidationException e:
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 errors = e.Errors;
+                break;
+            case CustomException:
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
                 break;
             default:
                 _logger.LogError(exception, exception.Message);

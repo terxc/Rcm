@@ -8,7 +8,7 @@ using Rcm.Services.Users.Core.DAL;
 
 #nullable disable
 
-namespace Rcm.Services.Users.Core.DAL.Migrations
+namespace Rcm.Services.Users.Core.Migrations
 {
     [DbContext(typeof(UsersDbContext))]
     partial class UsersDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace Rcm.Services.Users.Core.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Rcm.Services.Users.Core.Entities.Role", b =>
+            modelBuilder.Entity("Rcm.Services.Users.Core.Entities.Permission", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,8 +35,26 @@ namespace Rcm.Services.Users.Core.DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Permissions")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Permissions");
+                });
+
+            modelBuilder.Entity("Rcm.Services.Users.Core.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -54,7 +72,7 @@ namespace Rcm.Services.Users.Core.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -78,48 +96,66 @@ namespace Rcm.Services.Users.Core.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Rcm.Services.Users.Core.Entities.UserRole", b =>
+            modelBuilder.Entity("RolePermissions", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("PermissionId")
                         .HasColumnType("int");
 
                     b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("PermissionId", "RoleId");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("RolePermissions");
                 });
 
-            modelBuilder.Entity("Rcm.Services.Users.Core.Entities.UserRole", b =>
+            modelBuilder.Entity("UserRoles", b =>
                 {
-                    b.HasOne("Rcm.Services.Users.Core.Entities.Role", "Role")
-                        .WithMany("Users")
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.HasKey("RoleId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("RolePermissions", b =>
+                {
+                    b.HasOne("Rcm.Services.Users.Core.Entities.Permission", null)
+                        .WithMany()
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Rcm.Services.Users.Core.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("UserRoles", b =>
+                {
+                    b.HasOne("Rcm.Services.Users.Core.Entities.Role", null)
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Rcm.Services.Users.Core.Entities.User", "User")
-                        .WithMany("Roles")
+                    b.HasOne("Rcm.Services.Users.Core.Entities.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Rcm.Services.Users.Core.Entities.Role", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Rcm.Services.Users.Core.Entities.User", b =>
-                {
-                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

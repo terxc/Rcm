@@ -5,12 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Rcm.Services.Users.Core.Entities;
-
-public class UserRole
+public class Permission
 {
-    public int UserId { get; set; }
-    public int RoleId { get; set; }
-
-    public User User { get; set; }
-    public Role Role { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public IEnumerable<Role> Roles { get; set; }
 }

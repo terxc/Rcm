@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Rcm.Services.Users.Api;
 using Rcm.Services.Users.Core;
-using Rcm.Shared.Middlewares;
 
 internal class Program
 {

@@ -5,7 +5,7 @@ namespace Rcm.Shared.Auth;
 public class JsonWebTokenPayload
 {
     public string Subject { get; set; }
-    public string Role { get; set; }
     public long Expires { get; set; }
-    public IDictionary<string, string> Claims { get; set; }
+    public IEnumerable<string> Roles { get; set; }
+    public IDictionary<string, IEnumerable<string>> Claims { get; set; }
 }
