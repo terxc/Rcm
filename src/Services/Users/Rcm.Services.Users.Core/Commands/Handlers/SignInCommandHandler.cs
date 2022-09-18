@@ -28,7 +28,9 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, JsonWebToken>
 
     public async Task<JsonWebToken> Handle(SignInCommand request, CancellationToken cancellationToken)
     {
-        var user = await _dbContext.Users.Include(x => x.Roles).ThenInclude(x => x.Permissions).FirstOrDefaultAsync(x => x.Email == request.Email);
+        var user = await _dbContext.Users
+            .Include(x => x.Roles).ThenInclude(x => x.Permissions)
+            .FirstOrDefaultAsync(x => x.Email == request.Email);
         if (user == null || _passwordHasher.VerifyHashedPassword(default, user.Password, request.Password) == PasswordVerificationResult.Failed)
         {
             throw new CustomException("Неверный логин пользователя или пароль");

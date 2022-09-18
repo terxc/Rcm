@@ -14,9 +14,10 @@ public static class Endpoints
         var appName = app.Configuration["app:name"];
         app.MapGet("/", () => appName);
 
+        app.MediatePost<SignUpCommand>("api/account/sign-up", StatusCodes.Status204NoContent);
         app.MediatePost<SignInCommand>("api/account/sign-in");
-        app.MediatePost<SignUpCommand>("api/account/sign-up");
 
-        app.MediateGet<GetUserQuery>("api/users/{userId}");
+        app.MediateGet<GetUserQuery>("api/users/{id}", policyNames: new[] { "UsersView" });
+        app.MediatePut<UpdateUserCommand>("api/users/{id}", policyNames: new[] { "UsersEdit" });
     }
 }

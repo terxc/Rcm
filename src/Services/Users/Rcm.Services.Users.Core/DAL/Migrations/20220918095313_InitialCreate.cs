@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Rcm.Services.Users.Core.Migrations
+namespace Rcm.Services.Users.Core.DAL.Migrations
 {
     public partial class InitialCreate : Migration
     {

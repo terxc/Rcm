@@ -31,7 +31,7 @@ public class UsersInitializer
 
     private async Task AddPermissionsAsync()
     {
-        var permissions = new string[] { "administration", "users" };
+        var permissions = new string[] { Permission.UsersView, Permission.UsersEdit };
 
         foreach (var p in permissions)
         {
@@ -49,13 +49,17 @@ public class UsersInitializer
         var permissions = _dbContext.Permissions.ToList();
         await _dbContext.Roles.AddAsync(new Role
         {
-            Name = "admin",
-            Permissions = permissions
+            Name = Role.Admin,
+            Permissions = permissions.Where(x => x.Name == Permission.UsersEdit).ToList()
         });
         await _dbContext.Roles.AddAsync(new Role
         {
-            Name = "user",
-            Permissions = new List<Permission>()
+            Name = Role.Manager,
+            Permissions = permissions.Where(x => x.Name == Permission.UsersView).ToList()
+        });
+        await _dbContext.Roles.AddAsync(new Role
+        {
+            Name = Role.User
         });
 
         await _dbContext.SaveChangesAsync();

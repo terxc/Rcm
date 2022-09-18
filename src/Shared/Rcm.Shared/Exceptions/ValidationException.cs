@@ -8,13 +8,16 @@ public class ValidationException : Exception
 {
     public ValidationException() : base("Ошибка валидации")
     {
-        Errors = new List<string>();
+        Errors = new Dictionary<string, string[]>();
     }
 
-    public ValidationException(IEnumerable<ValidationFailure> failures) : this()
+    public ValidationException(IEnumerable<ValidationFailure> failures)
+        : this()
     {
-        Errors = failures.Select(x => x.ErrorMessage).ToList();
+        Errors = failures
+            .GroupBy(e => e.PropertyName, e => e.ErrorMessage)
+            .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());
     }
 
-    public List<string> Errors { get; }
+    public IDictionary<string, string[]> Errors { get; }
 }

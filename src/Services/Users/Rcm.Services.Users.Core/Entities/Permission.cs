@@ -10,4 +10,7 @@ public class Permission
     public int Id { get; set; }
     public string Name { get; set; }
     public IEnumerable<Role> Roles { get; set; }
+
+    public const string UsersView = "users:view";
+    public const string UsersEdit = "users:edit";
 }

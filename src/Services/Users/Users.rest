@@ -3,8 +3,7 @@
 ###
 GET {{url}}
 ###
-@email = absd@f11
-@adminEmail = admin1@inflow.io
+@email = user1@rcm.ru
 @password = Secret123!
 
 ### Register as the regular user
@@ -26,8 +25,20 @@ Content-Type: application/json
   "password": "{{password}}"
 }
 
+###
+@accessToken = {{sign_in.response.body.$.accessToken}}
 
 ### Get user details as admin
-GET {{url}}/api/users/{{userId}}
+@id = 123
 
-@userId = 1
+GET {{url}}/api/users/{{id}}
+Authorization: Bearer {{accessToken}}
+
+### Change user state as admin
+PUT {{url}}/api/users/{{id}}
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "id": {{id}}
+}

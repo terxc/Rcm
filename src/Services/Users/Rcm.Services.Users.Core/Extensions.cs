@@ -12,7 +12,6 @@ using Rcm.Shared.Auth;
 using Rcm.Shared.Behaviours;
 using Rcm.Shared.Middlewares;
 using Rcm.Shared.Serialization;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Rcm.Services.Users.Core;
 
@@ -23,7 +22,8 @@ public static class Extensions
         services.AddJwt();
         services.AddAuthorization(authorization =>
             {
-                authorization.AddPolicy("users", x => x.RequireClaim("permissions", "users"));
+                authorization.AddPolicy("UsersView", x => x.RequireClaim("permissions", Permission.UsersView, Permission.UsersEdit));
+                authorization.AddPolicy("UsersEdit", x => x.RequireClaim("permissions", Permission.UsersEdit));
             });
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -44,6 +44,7 @@ public static class Extensions
     {
         app.UseMiddleware<ErrorHandlerMiddleware>();
         app.UseAuthentication();
+        app.UseAuthorization();
 
         using (var scope = app.ApplicationServices.CreateScope())
         {

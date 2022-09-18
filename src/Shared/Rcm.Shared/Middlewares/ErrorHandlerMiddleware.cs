@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Rcm.Shared.Exceptions;
 using Rcm.Shared.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Rcm.Shared.Middlewares;
 public class ErrorHandlerMiddleware
@@ -41,24 +42,32 @@ public class ErrorHandlerMiddleware
         var response = context.Response;
         response.ContentType = "application/json; charset=utf-8";
 
-        var errors = new List<string>();
+        object content = null;
 
         switch (exception)
         {
             case ValidationException e:
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
-                errors = e.Errors;
+                content = new { exception.Message, e.Errors };
+                break;
+            case NotFoundException:
+                response.StatusCode = (int)HttpStatusCode.NotFound;
                 break;
             case CustomException:
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
+                content = new { exception.Message };
                 break;
             default:
                 _logger.LogError(exception, exception.Message);
+                content = new { exception.Message };
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 break;
         }
 
-        var result = _serializer.Serialize(new { Message = exception.Message, Errors = errors });
-        await response.WriteAsync(result);
+        if (content != null)
+        {
+            var result = _serializer.Serialize(content);
+            await response.WriteAsync(result);
+        }
     }
 }

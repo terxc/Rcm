@@ -9,7 +9,8 @@ public class Role
     public IEnumerable<Permission> Permissions { get; set; }
     public IEnumerable<User> Users { get; set; }
 
-    public static string Default => User;
-    public const string User = "user";
     public const string Admin = "admin";
+    public const string Manager = "manager";
+    public const string User = "user";
+    public static string Default => User;
 }
