@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System;
 
 namespace Rcm.Shared.Auth;
 public static class Extensions
@@ -11,6 +10,11 @@ public static class Extensions
     public static void AddJwt(this IServiceCollection services)
     {
         var options = services.GetOptions<JwtOptions>(SectionName);
+        if (string.IsNullOrWhiteSpace(options.SecretKey))
+        {
+            throw new InvalidOperationException("Missing secret key.");
+        }
+
         services.AddSingleton(options);
         services.AddSingleton<IJwtHandler, JwtHandler>();
         services.AddAuthentication()

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Rcm.Shared.Exceptions;
 using Rcm.Shared.Serialization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Net;
 
 namespace Rcm.Shared.Middlewares;
 public class ErrorHandlerMiddleware
@@ -40,9 +35,8 @@ public class ErrorHandlerMiddleware
     private async Task HandleErrorAsync(HttpContext context, Exception exception)
     {
         var response = context.Response;
-        response.ContentType = "application/json; charset=utf-8";
 
-        object content = null;
+        object? content = null;
 
         switch (exception)
         {
@@ -66,8 +60,7 @@ public class ErrorHandlerMiddleware
 
         if (content != null)
         {
-            var result = _serializer.Serialize(content);
-            await response.WriteAsync(result);
+            await response.WriteAsJsonAsync(content);
         }
     }
 }

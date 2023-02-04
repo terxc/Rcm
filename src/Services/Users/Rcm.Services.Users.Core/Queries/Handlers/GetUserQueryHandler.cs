@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rcm.Services.Users.Core.DAL;
 using Rcm.Shared.Exceptions;

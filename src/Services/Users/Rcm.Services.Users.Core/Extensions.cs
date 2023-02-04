@@ -35,7 +35,7 @@ public static class Extensions
         services.AddTransient<UsersInitializer>();
 
         services.AddSingleton<IJsonSerializer, SystemTextJsonSerializer>();
-        services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
+        services.AddSingleton<IPasswordHasher<object>, PasswordHasher<object>>();
 
         return services;
     }

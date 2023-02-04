@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 
 namespace Rcm.Shared.Exceptions;
 public class ValidationException : Exception
 {
-    public ValidationException() : base("Ошибка валидации")
+    public ValidationException() : base()
     {
         Errors = new Dictionary<string, string[]>();
     }

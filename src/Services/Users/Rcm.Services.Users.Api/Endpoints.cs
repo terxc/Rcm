@@ -1,7 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Rcm.Services.Users.Core.Commands;
+﻿using Rcm.Services.Users.Core.Commands;
 using Rcm.Services.Users.Core.Queries;
 using Rcm.Shared.MediatR;
 

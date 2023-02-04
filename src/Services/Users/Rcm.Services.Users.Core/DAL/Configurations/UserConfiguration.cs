@@ -1,9 +1,6 @@
 ﻿using Rcm.Services.Users.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Collections.Generic;
-using Microsoft.Extensions.Hosting;
-using System.Reflection.Emit;
 
 namespace Rcm.Services.Users.Core.DAL.Configurations;
 

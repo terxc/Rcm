@@ -12,9 +12,9 @@ namespace Rcm.Services.Users.Core.Commands.Handlers;
 public class SignUpCommandHandler : IRequestHandler<SignUpCommand>
 {
     private readonly UsersDbContext _dbContext;
-    private readonly IPasswordHasher<User> _passwordHasher;
+    private readonly IPasswordHasher<object> _passwordHasher;
 
-    public SignUpCommandHandler(UsersDbContext dbContext, IPasswordHasher<User> passwordHasher)
+    public SignUpCommandHandler(UsersDbContext dbContext, IPasswordHasher<object> passwordHasher)
     {
         _dbContext = dbContext;
         _passwordHasher = passwordHasher;
@@ -25,7 +25,7 @@ public class SignUpCommandHandler : IRequestHandler<SignUpCommand>
         var defaultRole = await _dbContext.Roles.FirstAsync(x => x.Name == Role.Default);
 
         var email = request.Email.ToLowerInvariant();
-        var password = _passwordHasher.HashPassword(default, request.Password);
+        var password = _passwordHasher.HashPassword(new object(), request.Password);
         var user = new User
         {
             Email = request.Email,

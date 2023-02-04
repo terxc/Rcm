@@ -1,10 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Linq;
 
 namespace Rcm.Shared.Auth;
 
@@ -27,6 +24,11 @@ public class JwtHandler : IJwtHandler
     public JwtHandler(JwtOptions options)
     {
         _options = options;
+        if (string.IsNullOrWhiteSpace(_options.SecretKey))
+        {
+            throw new InvalidOperationException("Missing secret key.");
+        }
+
         var issuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey));
         _signingCredentials = new SigningCredentials(issuerSigningKey, SecurityAlgorithms.HmacSha256);
         _tokenValidationParameters = new TokenValidationParameters
@@ -40,7 +42,7 @@ public class JwtHandler : IJwtHandler
         };
     }
 
-    public JsonWebToken CreateToken(string userId, IEnumerable<string> roles = null, IDictionary<string, IEnumerable<string>> claims = null)
+    public JsonWebToken CreateToken(string userId, IEnumerable<string>? roles = null, IDictionary<string, IEnumerable<string>>? claims = null)
     {
         if (string.IsNullOrWhiteSpace(userId))
         {
@@ -56,9 +58,6 @@ public class JwtHandler : IJwtHandler
                 new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString()),
             };
 
-        var rolesClaims = roles?.Select(role => new Claim(ClaimTypes.Role, role)).ToArray() ?? Array.Empty<Claim>();
-        jwtClaims.AddRange(rolesClaims);
-
         if (claims != null)
         {
             var customClaims = new List<Claim>();
@@ -73,6 +72,7 @@ public class JwtHandler : IJwtHandler
         var expires = now.AddMinutes(_options.ExpiryMinutes);
         var jwt = new JwtSecurityToken(
             issuer: _options.Issuer,
+            audience: _options.Audience,
             claims: jwtClaims,
             notBefore: now,
             expires: expires,
@@ -83,9 +83,9 @@ public class JwtHandler : IJwtHandler
         return new JsonWebToken
         {
             AccessToken = token,
-            RefreshToken = string.Empty,
+            RefreshToken = "s333 d 33faaasddd fffddfffss4",
             Expires = expires.ToTimestamp(),
-            Id = userId,
+            UserId = userId,
             Roles = roles ?? Array.Empty<string>(),
             Claims = claims ?? new Dictionary<string, IEnumerable<string>>()
         };

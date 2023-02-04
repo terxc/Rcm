@@ -1,25 +1,22 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Rcm.Shared;
 
 public static class Extensions
 {
-    public static TModel GetOptions<TModel>(this IConfiguration configuration, string sectionName) where TModel : new()
+    public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : new()
     {
-        var model = new TModel();
-        configuration.GetSection(sectionName).Bind(model);
-        return model;
+        var options = new T();
+        configuration.GetSection(sectionName).Bind(options);
+        return options;
     }
 
-    public static TModel GetOptions<TModel>(this IServiceCollection services, string sectionName) where TModel : new()
+    public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
     {
         using (ServiceProvider provider = services.BuildServiceProvider())
         {
-            return provider.GetRequiredService<IConfiguration>().GetOptions<TModel>(sectionName);
+            return provider.GetRequiredService<IConfiguration>().GetOptions<T>(sectionName);
         }
     }
 

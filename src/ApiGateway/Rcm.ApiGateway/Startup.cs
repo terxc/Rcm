@@ -10,14 +10,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+ 
 namespace Rcm.ApiGateway
 {
     public class Startup
     {
         private readonly IConfiguration _configuration;
         private readonly string _appName;
-
+           
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
