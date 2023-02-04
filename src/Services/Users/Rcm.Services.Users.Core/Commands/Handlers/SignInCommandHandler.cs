@@ -1,10 +1,10 @@
-﻿using MediatR;
+﻿using Genl.Auth.JWT;
+using Genl.Framework.Exceptions;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Rcm.Services.Users.Core.DAL;
 using Rcm.Services.Users.Core.Entities;
-using Rcm.Shared.Auth;
-using Rcm.Shared.Exceptions;
 
 namespace Rcm.Services.Users.Core.Commands.Handlers;
 public class SignInCommandHandler : IRequestHandler<SignInCommand, JsonWebToken>

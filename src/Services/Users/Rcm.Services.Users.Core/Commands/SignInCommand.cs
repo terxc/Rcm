@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Rcm.Shared.Auth;
+using Genl.Auth.JWT;
 
 namespace Rcm.Services.Users.Core.Commands;
 

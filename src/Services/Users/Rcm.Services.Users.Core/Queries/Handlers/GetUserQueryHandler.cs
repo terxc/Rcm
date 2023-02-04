@@ -1,7 +1,7 @@
-﻿using MediatR;
+﻿using Genl.Framework.Exceptions;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rcm.Services.Users.Core.DAL;
-using Rcm.Shared.Exceptions;
 
 namespace Rcm.Services.Users.Core.Queries.Handlers;
 public class GetUserQueryHandler : IRequestHandler<GetUserQuery, int>

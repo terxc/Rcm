@@ -7,11 +7,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Rcm.Services.Users.Core.DAL;
 using Rcm.Services.Users.Core.Entities;
-using Rcm.Shared;
-using Rcm.Shared.Auth;
-using Rcm.Shared.Behaviours;
+using Genl.Auth;
 using Rcm.Shared.Middlewares;
-using Rcm.Shared.Serialization;
+using Genl;
+using Genl.Serialization;
+using Genl.Framework.Behaviours;
+using Genl.Framework.App;
 
 namespace Rcm.Services.Users.Core;
 
@@ -19,6 +20,7 @@ public static class Extensions
 {
     public static IServiceCollection AddCore(this IServiceCollection services)
     {
+        services.AddApp();
         services.AddJwt();
         services.AddAuthorization(authorization =>
             {

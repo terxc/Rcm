@@ -1,6 +1,7 @@
-﻿using Rcm.Services.Users.Core.Commands;
+﻿using Genl.Framework.App;
+using Genl.Framework.Mediating;
+using Rcm.Services.Users.Core.Commands;
 using Rcm.Services.Users.Core.Queries;
-using Rcm.Shared.MediatR;
 
 namespace Rcm.Services.Users.Api;
 
@@ -8,8 +9,7 @@ public static class Endpoints
 {
     public static void MapEndpoints(this WebApplication app)
     {
-        var appName = app.Configuration["app:name"];
-        app.MapGet("/", () => appName);
+        app.MapGet("/", (AppInfo appInfo) => appInfo.ToString());
 
         app.MediatePost<SignUpCommand>("api/account/sign-up", StatusCodes.Status204NoContent);
         app.MediatePost<SignInCommand>("api/account/sign-in");
