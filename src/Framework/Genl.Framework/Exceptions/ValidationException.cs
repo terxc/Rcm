@@ -3,7 +3,7 @@
 namespace Genl.Framework.Exceptions;
 public class ValidationException : Exception
 {
-    public ValidationException() : base()
+    public ValidationException() : base("Validation failed")
     {
         Errors = new Dictionary<string, string[]>();
     }

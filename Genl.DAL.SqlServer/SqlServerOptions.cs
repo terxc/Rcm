@@ -1,4 +1,4 @@
-﻿namespace Rcm.Services.Users.Core.DAL;
+﻿namespace Genl.DAL.SqlServer;
 
 public class SqlServerOptions
 {

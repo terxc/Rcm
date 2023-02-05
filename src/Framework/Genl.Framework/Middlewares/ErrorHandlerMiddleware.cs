@@ -2,15 +2,16 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Net;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
-namespace Rcm.Shared.Middlewares;
+namespace Genl.Framework.Middlewares;
 public class ErrorHandlerMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<ErrorHandlerMiddleware> _logger;
 
-    public ErrorHandlerMiddleware(RequestDelegate next,
-        ILogger<ErrorHandlerMiddleware> logger)
+    public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
     {
         _next = next;
         _logger = logger;
@@ -56,7 +57,13 @@ public class ErrorHandlerMiddleware
 
         if (content != null)
         {
-            await response.WriteAsJsonAsync(content);
+            var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+            {
+                DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            };
+
+            await response.WriteAsJsonAsync(content, options);
         }
     }
 }

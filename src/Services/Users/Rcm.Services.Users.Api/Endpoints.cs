@@ -1,4 +1,4 @@
-﻿using Genl.Framework.App;
+﻿using Genl.Framework;
 using Genl.Framework.Mediating;
 using Rcm.Services.Users.Core.Commands;
 using Rcm.Services.Users.Core.Queries;
@@ -9,7 +9,7 @@ public static class Endpoints
 {
     public static void MapEndpoints(this WebApplication app)
     {
-        app.MapGet("/", (AppInfo appInfo) => appInfo.ToString());
+        app.MapGet("/", (AppOptions options) => options.AppInfo);
 
         app.MediatePost<SignUpCommand>("api/account/sign-up", StatusCodes.Status204NoContent);
         app.MediatePost<SignInCommand>("api/account/sign-in");

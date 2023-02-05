@@ -26,7 +26,7 @@ public class JwtHandler : IJwtHandler
         _options = options;
         if (string.IsNullOrWhiteSpace(_options.SecretKey))
         {
-            throw new InvalidOperationException("Missing secret key.");
+            throw new InvalidOperationException("Missing secret key");
         }
 
         var issuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey));
@@ -46,7 +46,7 @@ public class JwtHandler : IJwtHandler
     {
         if (string.IsNullOrWhiteSpace(userId))
         {
-            throw new ArgumentException("User id claim can not be empty.", nameof(userId));
+            throw new ArgumentException("User id claim can not be empty", nameof(userId));
         }
 
         var now = DateTime.UtcNow;
@@ -83,7 +83,7 @@ public class JwtHandler : IJwtHandler
         return new JsonWebToken
         {
             AccessToken = token,
-            RefreshToken = "s333 d 33faaasddd fffddfffss4",
+            RefreshToken = string.Empty,
             Expires = expires.ToTimestamp(),
             UserId = userId,
             Roles = roles ?? Array.Empty<string>(),

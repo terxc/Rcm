@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Genl.DAL.SqlServer\Genl.DAL.SqlServer.csproj" />
     <ProjectReference Include="..\Genl.Auth\Genl.Auth.csproj" />
+    <ProjectReference Include="..\Genl.Security\Genl.Security.csproj" />
   </ItemGroup>
 
 </Project>

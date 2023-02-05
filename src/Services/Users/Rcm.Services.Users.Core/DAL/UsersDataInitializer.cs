@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Genl.DAL.SqlServer.Initializers;
+using Microsoft.EntityFrameworkCore;
 using Rcm.Services.Users.Core.Entities;
 
 namespace Rcm.Services.Users.Core.DAL;
-public class UsersInitializer
+public class UsersDataInitializer : IDataInitializer
 {
     private readonly UsersDbContext _dbContext;
 
-    public UsersInitializer(UsersDbContext dbContext)
+    public UsersDataInitializer(UsersDbContext dbContext)
     {
         _dbContext = dbContext;
     }

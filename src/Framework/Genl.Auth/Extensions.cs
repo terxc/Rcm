@@ -6,11 +6,9 @@ using System.Text;
 namespace Genl.Auth;
 public static class Extensions
 {
-    private static readonly string SectionName = "jwt";
-
     public static void AddJwt(this IServiceCollection services)
     {
-        var options = services.GetOptions<JwtOptions>(SectionName);
+        var options = services.GetOptions<JwtOptions>("jwt");
         if (string.IsNullOrWhiteSpace(options.SecretKey))
         {
             throw new InvalidOperationException("Missing secret key.");
