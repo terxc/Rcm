@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genl.Auth", "src\Framework\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genl.Security", "src\Framework\Genl.Security\Genl.Security.csproj", "{4DAE27CF-1E74-4DFB-A364-DB8E776F5EFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genl.DAL.SqlServer", "Genl.DAL.SqlServer\Genl.DAL.SqlServer.csproj", "{04BDF266-6866-4ABA-904D-1A3E8CEE9092}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genl.DAL.SqlServer", "src\Framework\Genl.DAL.SqlServer\Genl.DAL.SqlServer.csproj", "{04BDF266-6866-4ABA-904D-1A3E8CEE9092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

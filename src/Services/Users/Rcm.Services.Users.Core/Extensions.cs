@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using FluentValidation;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Rcm.Services.Users.Core.DAL;
 using Rcm.Services.Users.Core.Entities;
@@ -15,7 +12,7 @@ namespace Rcm.Services.Users.Core;
 
 public static class Extensions
 {
-    public static IServiceCollection AddCore(this IServiceCollection services)
+    public static IServiceCollection AddCore(this IServiceCollection services) 
     {
         services.AddGenl();
         services.AddJwt();
