@@ -7,7 +7,7 @@ GET {{url}}
 @password = Secret123!
 
 ### Register as the regular user
-POST {{url}}/api/account/sign-up
+POST {{url}}/sign-up
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 ### Login as the regular user
 # @name sign_in
-POST {{url}}/api/account/sign-in
+POST {{url}}/sign-in
 Content-Type: application/json
 
 {
@@ -31,11 +31,11 @@ Content-Type: application/json
 ### Get user details as admin
 @id = 1
 
-GET {{url}}/api/users/{{id}}
+GET {{url}}/users/{{id}}
 Authorization: Bearer {{accessToken}}
 
 ### Change user state as admin
-PUT {{url}}/api/users/{{id}}
+PUT {{url}}/users/{{id}}
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 

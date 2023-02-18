@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{B2A920C7-7BFC-4320-ADBA-4F3290C8CCF8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{8A8D3D7B-DB7A-4B59-90CF-BE9258F8ACAC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{8A8D3D7B-DB7A-4B59-90CF-BE9258F8ACAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.ApiGateway", "src\ApiGateway\Rcm.ApiGateway\Rcm.ApiGateway.csproj", "{5D617C5B-BBAC-4605-894C-014DB1966B4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Gateway", "src\ApiGateway\Rcm.ApiGateway\Rcm.Gateway.csproj", "{5D617C5B-BBAC-4605-894C-014DB1966B4F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Services.Users.Api", "src\Services\Users\Rcm.Services.Users.Api\Rcm.Services.Users.Api.csproj", "{0DB9D26D-2CDF-4C36-99C7-63D008564BB5}"
 EndProject
@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genl.Framework", "src\Frame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genl.Auth", "src\Framework\Genl.Auth\Genl.Auth.csproj", "{83EF0EA2-FE96-42ED-A7AE-BDE5B71A6BE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genl.Security", "src\Framework\Genl.Security\Genl.Security.csproj", "{4DAE27CF-1E74-4DFB-A364-DB8E776F5EFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genl.Security", "src\Framework\Genl.Security\Genl.Security.csproj", "{4DAE27CF-1E74-4DFB-A364-DB8E776F5EFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genl.DAL.SqlServer", "src\Framework\Genl.DAL.SqlServer\Genl.DAL.SqlServer.csproj", "{04BDF266-6866-4ABA-904D-1A3E8CEE9092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genl.DAL.SqlServer", "src\Framework\Genl.DAL.SqlServer\Genl.DAL.SqlServer.csproj", "{04BDF266-6866-4ABA-904D-1A3E8CEE9092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
