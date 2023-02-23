@@ -1,19 +1,19 @@
-{
+﻿{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:52606/",
-      "sslPort": 44332
+      "applicationUrl": "http://localhost:13378",
+      "sslPort": 0
     }
   },
   "profiles": {
-    "Rcm.Services.Users.Api": {
+    "Rcm.Services.Users.Notifications": {
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5010"
+      "applicationUrl": "http://localhost:5020"
     },
     "IIS Express": {
       "commandName": "IISExpress",

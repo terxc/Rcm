@@ -8,7 +8,6 @@ public class User
     public IEnumerable<Role> Roles { get; set; } = new List<Role>();
     public UserState State { get; set; }
     public DateTime CreatedDate { get; set; }
-    private string TestField { get; set; } = string.Empty;
 }
 
 public enum UserState

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Rcm.Contracts.Users;
 using Rcm.Services.Users.Core.DAL;
 using Rcm.Services.Users.Core.Entities;
 
@@ -13,11 +11,13 @@ public class SignUpCommandHandler : IRequestHandler<SignUpCommand>
 {
     private readonly UsersDbContext _dbContext;
     private readonly IPasswordHasher<object> _passwordHasher;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public SignUpCommandHandler(UsersDbContext dbContext, IPasswordHasher<object> passwordHasher)
+    public SignUpCommandHandler(UsersDbContext dbContext, IPasswordHasher<object> passwordHasher, IPublishEndpoint publishEndpoint)
     {
         _dbContext = dbContext;
         _passwordHasher = passwordHasher;
+        _publishEndpoint = publishEndpoint;
     }
 
     public async Task<Unit> Handle(SignUpCommand request, CancellationToken cancellationToken)
@@ -37,6 +37,8 @@ public class SignUpCommandHandler : IRequestHandler<SignUpCommand>
 
         _dbContext.Users.Add(user);
         await _dbContext.SaveChangesAsync();
+
+        await _publishEndpoint.Publish(new UserSignedUp(user.Id, user.Email));
 
         return Unit.Value;
     }
