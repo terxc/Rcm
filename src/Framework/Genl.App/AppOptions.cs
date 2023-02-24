@@ -1,4 +1,4 @@
-﻿namespace Genl.Framework;
+﻿namespace Genl.App;
 
 public class AppOptions
 {

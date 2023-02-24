@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Genl.Framework\Genl.Framework.csproj" />
+    <ProjectReference Include="..\..\Framework\Genl.App\Genl.App.csproj" />
   </ItemGroup>
 
 </Project>

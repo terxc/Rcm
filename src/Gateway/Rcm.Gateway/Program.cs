@@ -1,10 +1,10 @@
-using Genl.Framework;
+using Genl.App;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("yarp.json", false);
 
-builder.Services.AddGenl();
+builder.Services.AddApp(builder.Configuration);
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetRequiredSection("reverseProxy"));
 

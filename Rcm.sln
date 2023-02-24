@@ -29,13 +29,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genl.DAL.SqlServer", "src\F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{FA0CA768-3122-46EE-9B73-BE2B154F3A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.Contracts.Users", "src\Contracts\Rcm.Contracts.Users\Rcm.Contracts.Users.csproj", "{6E6281E0-98DF-4107-85ED-9C9D61730659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Contracts.Users", "src\Contracts\Rcm.Contracts.Users\Rcm.Contracts.Users.csproj", "{6E6281E0-98DF-4107-85ED-9C9D61730659}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{80DDC3D4-301E-4BBE-874F-106F6053FFC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.Services.Notifications.Api", "src\Services\Notifications\Rcm.Services.Notifications.Api\Rcm.Services.Notifications.Api.csproj", "{5FC59471-8237-4038-835A-CC04631A6302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Services.Notifications.Worker", "src\Services\Notifications\Rcm.Services.Notifications.Worker\Rcm.Services.Notifications.Worker.csproj", "{5FC59471-8237-4038-835A-CC04631A6302}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rcm.Services.Notifications.Core", "src\Services\Notifications\Rcm.Services.Notifications.Core\Rcm.Services.Notifications.Core.csproj", "{B61A6D05-CEF4-4ADE-800D-560DF6864B9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rcm.Services.Notifications.Core", "src\Services\Notifications\Rcm.Services.Notifications.Core\Rcm.Services.Notifications.Core.csproj", "{B61A6D05-CEF4-4ADE-800D-560DF6864B9C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genl.App", "src\Framework\Genl.App\Genl.App.csproj", "{89393495-93F9-469F-BA42-01133282A2E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genl.MassTransit", "src\Framework\Genl.MassTransit\Genl.MassTransit.csproj", "{D504536B-0688-408D-ACC5-7135C6BB3A70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,14 @@ Global
 		{B61A6D05-CEF4-4ADE-800D-560DF6864B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B61A6D05-CEF4-4ADE-800D-560DF6864B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B61A6D05-CEF4-4ADE-800D-560DF6864B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89393495-93F9-469F-BA42-01133282A2E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89393495-93F9-469F-BA42-01133282A2E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89393495-93F9-469F-BA42-01133282A2E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89393495-93F9-469F-BA42-01133282A2E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D504536B-0688-408D-ACC5-7135C6BB3A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D504536B-0688-408D-ACC5-7135C6BB3A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D504536B-0688-408D-ACC5-7135C6BB3A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D504536B-0688-408D-ACC5-7135C6BB3A70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +117,8 @@ Global
 		{80DDC3D4-301E-4BBE-874F-106F6053FFC8} = {9AB787FA-6F04-4B2B-9C06-2AC54394D0BE}
 		{5FC59471-8237-4038-835A-CC04631A6302} = {80DDC3D4-301E-4BBE-874F-106F6053FFC8}
 		{B61A6D05-CEF4-4ADE-800D-560DF6864B9C} = {80DDC3D4-301E-4BBE-874F-106F6053FFC8}
+		{89393495-93F9-469F-BA42-01133282A2E8} = {E3729C6A-1710-49A0-8523-22B6E7D16832}
+		{D504536B-0688-408D-ACC5-7135C6BB3A70} = {E3729C6A-1710-49A0-8523-22B6E7D16832}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA769516-ABD3-4FCC-A518-95FEE455413F}

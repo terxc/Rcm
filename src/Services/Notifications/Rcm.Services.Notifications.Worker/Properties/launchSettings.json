@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "Rcm.Services.Notifications.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

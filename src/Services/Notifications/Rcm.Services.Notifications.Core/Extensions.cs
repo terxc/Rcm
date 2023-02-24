@@ -1,23 +1,21 @@
-﻿using Genl.Framework;
+﻿using Genl.App;
 using MassTransit;
-using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Rcm.Services.Notifications.Core.Consumers;
 using System.Reflection;
 
 namespace Rcm.Services.Notifications.Core;
 
 public static class Extensions
 {
-    public static IServiceCollection AddCore(this IServiceCollection services)
+    public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddGenl();
+        services.AddApp(configuration);
 
         services.AddMassTransit(x =>
         {
             x.SetKebabCaseEndpointNameFormatter();
 
-            //x.AddConsumer<UserSignedUpConsumer>();
             x.AddConsumers(Assembly.GetExecutingAssembly());
 
             x.UsingRabbitMq((context, cfg) =>
@@ -31,10 +29,5 @@ public static class Extensions
         });
 
         return services;
-    }
-
-    public static IApplicationBuilder UseCore(this IApplicationBuilder app)
-    {
-        return app;
     }
 }

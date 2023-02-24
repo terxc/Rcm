@@ -1,4 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -21,9 +23,9 @@ public class JwtHandler : IJwtHandler
     private readonly SigningCredentials _signingCredentials;
     private readonly TokenValidationParameters _tokenValidationParameters;
 
-    public JwtHandler(JwtOptions options)
+    public JwtHandler(IOptions<JwtOptions> options)
     {
-        _options = options;
+        _options = options.Value;
         if (string.IsNullOrWhiteSpace(_options.SecretKey))
         {
             throw new InvalidOperationException("Missing secret key");
@@ -91,7 +93,7 @@ public class JwtHandler : IJwtHandler
         };
     }
 
-    public JsonWebTokenPayload GetTokenPayload(string accessToken)
+    public JsonWebTokenPayload? GetTokenPayload(string accessToken)
     {
         _jwtSecurityTokenHandler.ValidateToken(accessToken, _tokenValidationParameters, out var validatedSecurityToken);
         if (!(validatedSecurityToken is JwtSecurityToken jwt))

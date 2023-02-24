@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Genl.Security;
 
 public static class Extensions
 {
-    public static void AddSecurity(this IServiceCollection services)
+    public static IServiceCollection AddSecurity(this IServiceCollection services, IConfiguration configuration)
     {
-        var options = services.GetOptions<SecurityOptions>("security");
+        var section = configuration.GetSection("security");
+        services.Configure<SecurityOptions>(section);
 
-        services.AddSingleton(options);
         services.AddSingleton<IPasswordHasher<object>, PasswordHasher<object>>();
+
+        return services;
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,15 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Figgle" Version="0.5.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.4.0" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.13" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Genl.App\Genl.App.csproj" />
     <ProjectReference Include="..\Genl.Auth\Genl.Auth.csproj" />
     <ProjectReference Include="..\Genl.DAL.SqlServer\Genl.DAL.SqlServer.csproj" />
+    <ProjectReference Include="..\Genl.MassTransit\Genl.MassTransit.csproj" />
     <ProjectReference Include="..\Genl.Security\Genl.Security.csproj" />
   </ItemGroup>
 

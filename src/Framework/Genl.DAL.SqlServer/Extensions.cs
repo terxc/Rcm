@@ -1,20 +1,28 @@
 ﻿using Genl.DAL.SqlServer.Initializers;
-using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Genl.DAL.SqlServer;
 
 public static class Extensions
 {
-    public static void AddSqlServer<T>(this IServiceCollection services) where T : DbContext
+    public static IServiceCollection AddSqlServer<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
     {
-        var options = services.GetOptions<SqlServerOptions>("sqlserver");
+        var section = configuration.GetSection("sqlserver");
+        var options = section.BindOptions<SqlServerOptions>();
+        services.Configure<SqlServerOptions>(section);
+        if (!section.Exists())
+        {
+            return services;
+        }
 
-        services.AddSingleton(options);
         services.AddDbContext<T>(x => x.UseSqlServer(options.ConnectionString));
         services.AddHostedService<DatabaseInitializer<T>>();
         services.AddHostedService<DataInitializer>();
+
+        return services;
+
     }
 
     public static void AddInitializer<T>(this IServiceCollection services) where T : class, IDataInitializer

@@ -1,4 +1,5 @@
 ﻿using Genl.Auth.JWT;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -6,15 +7,23 @@ using System.Text;
 namespace Genl.Auth;
 public static class Extensions
 {
-    public static void AddJwt(this IServiceCollection services)
+    public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration)
     {
-        var options = services.GetOptions<JwtOptions>("jwt");
+        var section = configuration.GetSection("jwt");
+        var options = section.BindOptions<JwtOptions>();
+        services.Configure<JwtOptions>(section);
+
+        if (!section.Exists())
+        {
+            return services;
+        }
+
+
         if (string.IsNullOrWhiteSpace(options.SecretKey))
         {
             throw new InvalidOperationException("Missing secret key.");
         }
 
-        services.AddSingleton(options);
         services.AddSingleton<IJwtHandler, JwtHandler>();
         services.AddAuthentication()
             .AddJwtBearer(cfg =>
@@ -30,5 +39,7 @@ public static class Extensions
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+        return services;
     }
 }

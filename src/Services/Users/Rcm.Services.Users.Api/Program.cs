@@ -1,12 +1,12 @@
+using Genl.App;
 using Genl.Framework.Mediating;
-using Genl.Framework;
 using Rcm.Services.Users.Core;
 using Rcm.Services.Users.Core.Commands;
 using Rcm.Services.Users.Core.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCore();
+builder.Services.AddCore(builder.Configuration);
 
 var app = builder.Build();
 app.UseCore();
