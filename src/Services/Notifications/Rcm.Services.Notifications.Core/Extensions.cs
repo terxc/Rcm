@@ -1,4 +1,5 @@
 ﻿using Genl.App;
+using Genl.MassTransit;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,20 +13,8 @@ public static class Extensions
     {
         services.AddApp(configuration);
 
-        services.AddMassTransit(x =>
-        {
-            x.SetKebabCaseEndpointNameFormatter();
-
+        services.AddMassTransit(configuration, x => {
             x.AddConsumers(Assembly.GetExecutingAssembly());
-
-            x.UsingRabbitMq((context, cfg) =>
-            {
-                cfg.Host("localhost", "/", h => {
-                    h.Username("guest");
-                    h.Password("guest");
-                });
-                cfg.ConfigureEndpoints(context);
-            });
         });
 
         return services;

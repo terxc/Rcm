@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Rcm.Services.Users.Core.DAL;
 
-namespace Rcm.Services.Users.Core.Commands.Handlers;
+namespace Rcm.Services.Users.Core.CQRS.Handlers;
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
 {
     private readonly UsersDbContext _dbContext;

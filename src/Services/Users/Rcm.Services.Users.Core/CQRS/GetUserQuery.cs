@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Rcm.Services.Users.Core.Queries;
+namespace Rcm.Services.Users.Core.CQRS;
 
 public class GetUserQuery : IRequest<int>
 {

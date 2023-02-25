@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Rcm.Services.Users.Core.DAL;
 
-namespace Rcm.Services.Users.Core.Queries.Handlers;
+namespace Rcm.Services.Users.Core.CQRS.Handlers;
 public class GetUserQueryHandler : IRequestHandler<GetUserQuery, int>
 {
     private readonly UsersDbContext _dbContext;
@@ -20,7 +20,8 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, int>
             .Include(x => x.Roles).ThenInclude(x => x.Permissions)
             .FirstOrDefaultAsync(x => x.Id == request.Id);
 
-        if (user == null) {
+        if (user == null)
+        {
             throw new NotFoundException();
         }
 

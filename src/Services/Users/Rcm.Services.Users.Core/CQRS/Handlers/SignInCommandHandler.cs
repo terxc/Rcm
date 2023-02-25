@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Rcm.Services.Users.Core.DAL;
 using Rcm.Services.Users.Core.Entities;
 
-namespace Rcm.Services.Users.Core.Commands.Handlers;
+namespace Rcm.Services.Users.Core.CQRS.Handlers;
 public class SignInCommandHandler : IRequestHandler<SignInCommand, JsonWebToken>
 {
     private readonly UsersDbContext _dbContext;

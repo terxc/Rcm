@@ -3,7 +3,7 @@
 ###
 GET {{url}}
 ###
-@email = user11@rcm.ru
+@email = user24@rcm.ru
 @password = Secret123!
 
 ### Register as the regular user

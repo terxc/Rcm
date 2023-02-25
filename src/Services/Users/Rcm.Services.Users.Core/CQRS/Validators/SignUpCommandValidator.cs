@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-using System.Threading;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Rcm.Services.Users.Core.DAL;
 
-namespace Rcm.Services.Users.Core.Commands.Validators;
+namespace Rcm.Services.Users.Core.CQRS.Validators;
 
 public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
 {
