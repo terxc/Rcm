@@ -3,7 +3,7 @@ using Genl.MassTransit;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+using Rcm.Services.Notifications.Core.Consumers;
 
 namespace Rcm.Services.Notifications.Core;
 
@@ -13,8 +13,13 @@ public static class Extensions
     {
         services.AddApp(configuration);
 
-        services.AddMassTransit(configuration, x => {
-            x.AddConsumers(Assembly.GetExecutingAssembly());
+        services.AddMassTransit(configuration, x =>
+        {
+            x.AddConsumer<UserSignedUpConsumer>()
+                .Endpoint(cfg =>
+                {
+                    cfg.Temporary = true;
+                });
         });
 
         return services;

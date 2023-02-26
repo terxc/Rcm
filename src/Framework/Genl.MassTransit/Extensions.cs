@@ -19,7 +19,7 @@ public static class Extensions
 
         services.AddMassTransit(x =>
         {
-            x.SetKebabCaseEndpointNameFormatter();
+            x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(options.ServiceName, false));
 
             configure?.Invoke(x);
 
@@ -27,7 +27,7 @@ public static class Extensions
             {
                 cfg.Host(options.Host, options.VirtualHost, h =>
                 {
-                    h.Username(options.Username);
+                    h.Username(options.UserName);
                     h.Password(options.Password);
                 });
                 cfg.ConfigureEndpoints(context);

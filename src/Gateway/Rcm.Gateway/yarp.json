@@ -11,6 +11,17 @@
             "pathPattern": "{**catchall}"
           }
         ]
+      },
+      "navigation": {
+        "clusterId": "navigation",
+        "match": {
+          "path": "navigation-service/{**catchall}"
+        },
+        "transforms": [
+          {
+            "pathPattern": "{**catchall}"
+          }
+        ]
       }
     },
     "clusters": {
@@ -18,6 +29,13 @@
         "destinations": {
           "destination1": {
             "address": "http://localhost:5010"
+          }
+        }
+      },
+      "navigation": {
+        "destinations": {
+          "destination1": {
+            "address": "http://localhost:5020"
           }
         }
       }
